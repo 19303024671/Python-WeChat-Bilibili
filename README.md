@@ -1,24 +1,44 @@
-简介：
-该项目使用Python语言实现以下内容：
+# Bilibili热门信息爬取与微信自动推送
+
+## 简介：
+
+### 该项目使用Python语言实现以下内容：
+
 1.爬取bilibili网站热门视频信息（目前包括视频名称，视频地址）；
 
-https://res.craft.do/user/full/3136d9b0-de94-a82b-edbe-70f1d555ae42/doc/a2348cdc-7406-4aad-93f4-80dd64b8a22e/2cc02acf-99df-47d2-bc24-29a41711f3be
+![bilibili.png](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/bilibili.png)
+
 2.自动使用微信软件将爬取到的内容分条发送到指定好友（目前是文件传输助手）。
 
-https://res.craft.do/user/full/3136d9b0-de94-a82b-edbe-70f1d555ae42/doc/a2348cdc-7406-4aad-93f4-80dd64b8a22e/8a893c49-f63b-4b19-962e-ec26599a5025
-实现原理：
-爬取原理：
+![WeChat.png](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/WeChat.png)
+
+## 实现原理：
+
+### 爬取原理：
+
 1.借助selenium模块实现动态页面的爬取；
+
 2.xpath解析页面，获取信息；
+
 3.存成msg_dir字典，并返回、
-自动发送微信信息原理：
+
+### 自动发送微信信息原理：
+
 1.导入 win32gui模块，通过微信PC端窗口的类名与窗口名获取到窗口句柄；
+
 2.借助pywinauto.keyboard模块中的 send_keys方法实现将字符串以及控制字符（回车）发送到指定窗口；
+
 3.进而自动发送信息。
-代码文件说明：
-main.py  
+
+## 代码文件说明：
+
+### 1. [main.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/main.py)
+
 说明：程序入口，可以直接运行
+
 代码：
+
+```javascript
 import time
 
 from getmsg import get_msg
@@ -38,11 +58,15 @@ def main():
 
 if __name__ == '__main__':
     main()
+```
 
-edge.py
+### 2. [edge.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/edge.py)
+
 说明：selenium模块的加工，可以直接返回不易被浏览器察觉的自动化对象
+
 代码：
 
+```javascript
 from selenium import webdriver
 
 
@@ -64,11 +88,15 @@ def create_edge_driver(*, headless=False):
 if __name__ == '__main__':
     b = create_edge_driver()
     b.get('https://max.book118.com/html/2018/1025/8060051030001130.shtm')
+```
 
-getwnd.py
+### 3. [getwnd.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/getwnd.py)
+
 说明：获取微信信息发送窗口的句柄，主要使用该文件内的get_window()方法
+
 代码：
 
+```javascript
 import sys
 import win32gui
 import win32con
@@ -99,14 +127,15 @@ def get_window():
         if get_title(wnd) == "微信":
             if get_clasname(wnd) == "WeChatMainWndForPC":
                 return wnd
+```
 
+### 4. [getmsg.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/getmsg.py)
 
-
-
-getmsg.py
 说明：爬取bilibili网站信息的文件，文件中的get_msg()方法返回爬取到的信息的字典
+
 代码：
 
+```javascript
 from edge import create_edge_driver
 from lxml import etree
 
@@ -136,11 +165,15 @@ def get_msg():
 
 if __name__ == '__main__':
     print(get_msg())
+```
 
-sendmsg.py
+### 5. [sendmsg.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/sendmsg.py)
+
 说明：发送微信信息的文件，使用文件中的send_msg()方法发送指定一条信息
+
 代码：
 
+```javascript
 import time
 
 import win32con
@@ -161,4 +194,5 @@ if __name__ == '__main__':
 
     wnd = get_window()
     send_msg(wnd, "123")
+```
 
