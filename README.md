@@ -6,11 +6,13 @@
 
 1.爬取bilibili网站热门视频信息（目前包括视频名称，视频地址）；
 
-![bilibili.png](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/bilibili.png)
+![bilibili.png](https://res.craft.do/user/full/3136d9b0-de94-a82b-edbe-70f1d555ae42/doc/a2348cdc-7406-4aad-93f4-80dd64b8a22e/2cc02acf-99df-47d2-bc24-29a41711f3be)
 
 2.自动使用微信软件将爬取到的内容分条发送到指定好友（目前是文件传输助手）。
 
-![WeChat.png](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/WeChat.png)
+![WeChat.png](https://res.craft.do/user/full/3136d9b0-de94-a82b-edbe-70f1d555ae42/doc/a2348cdc-7406-4aad-93f4-80dd64b8a22e/8a893c49-f63b-4b19-962e-ec26599a5025)
+
+---
 
 ## 实现原理：
 
@@ -30,9 +32,11 @@
 
 3.进而自动发送信息。
 
+---
+
 ## 代码文件说明：
 
-### 1. [main.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/main.py)
+1. ### [main.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/main.py)
 
 说明：程序入口，可以直接运行
 
@@ -60,7 +64,7 @@ if __name__ == '__main__':
     main()
 ```
 
-### 2. [edge.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/edge.py)
+2. ### [edge.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/edge.py)
 
 说明：selenium模块的加工，可以直接返回不易被浏览器察觉的自动化对象
 
@@ -90,7 +94,7 @@ if __name__ == '__main__':
     b.get('https://max.book118.com/html/2018/1025/8060051030001130.shtm')
 ```
 
-### 3. [getwnd.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/getwnd.py)
+3. ### [getwnd.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/getwnd.py)
 
 说明：获取微信信息发送窗口的句柄，主要使用该文件内的get_window()方法
 
@@ -129,7 +133,7 @@ def get_window():
                 return wnd
 ```
 
-### 4. [getmsg.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/getmsg.py)
+4. ### [getmsg.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/getmsg.py)
 
 说明：爬取bilibili网站信息的文件，文件中的get_msg()方法返回爬取到的信息的字典
 
@@ -167,7 +171,7 @@ if __name__ == '__main__':
     print(get_msg())
 ```
 
-### 5. [sendmsg.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/sendmsg.py)
+5. ### [sendmsg.py](https://github.com/19303024671/Python-WeChat-Bilibili/blob/main/sendmsg.py)
 
 说明：发送微信信息的文件，使用文件中的send_msg()方法发送指定一条信息
 
@@ -196,3 +200,14 @@ if __name__ == '__main__':
     send_msg(wnd, "123")
 ```
 
+---
+
+## 联系我：粤地小蜜蜂
+
+我的邮箱：QQ邮箱
+
+CSDN主页：[CSDN](https://blog.csdn.net/m0_67194505?type=blog)
+
+GitHub主页：[GitHub](https://github.com/19303024671)
+
+?descriptionFromFileType=function+toLocaleUpperCase()+{+[native+code]+}+File&mimeType=application/octet-stream&fileName=Bilibili热门信息爬取与微信自动推送.md&fileType=undefined&fileExtension=md
